@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import Head from 'next/head'
 import { Container, Row, Col, Form, Button, Image, Alert } from 'react-bootstrap'
 
 export default function Login() {
 
+  const router = useRouter()
+
+  const userLogin = event => {
+    event.preventDefault();
+    router.push('/success')
+  }
+
+  const handleClick = () => {
+    router.push('/success')
+  }
+
   return (
     <section>
-      <Head> 
+      <Head>
         <title>Login & Register </title>
       </Head>
       <Container fluid="md" className="m-2 p-2">
@@ -18,7 +29,7 @@ export default function Login() {
         </Row>
         <Row>
           <Col>
-            <Form>
+            <Form onSubmit={userLogin}>
               <Form.Group>
                 <Form.Label>Fullname</Form.Label>
                 <Form.Control id="name" name="name" type="text" placeholder="Enter fullname" />
@@ -37,6 +48,9 @@ export default function Login() {
               <Button block variant="primary" type="submit">
                 Login
               </Button>
+              {/* <Button block variant="primary" onClick={handleClick} type="button">
+                Login
+              </Button> */}
 
             </Form>
           </Col>
